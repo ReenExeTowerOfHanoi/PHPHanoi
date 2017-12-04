@@ -2,6 +2,7 @@
     <testsuites>
         <testsuite name="blank">
             <file>tests/TowerTestCase.php</file>
+            <file>tests/DeepFirstSearchTestCase.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

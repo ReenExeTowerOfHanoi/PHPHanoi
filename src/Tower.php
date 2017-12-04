@@ -2,7 +2,7 @@
 
 namespace ReenExe\Hanoi;
 
-class Tower
+class Tower implements \JsonSerializable
 {
     /**
      * @var array
@@ -39,6 +39,38 @@ class Tower
      */
     public function getTop(): int
     {
-        return $this->disks[0];
+        return end($this->disks);
+    }
+
+    /**
+     * @param int $disk
+     */
+    public function addTop(int $disk)
+    {
+        $this->disks[] = $disk;
+    }
+
+    /**
+     * @return int
+     */
+    public function fetchTop(): int
+    {
+        return array_pop($this->disks);
+    }
+
+    /**
+     * @return string
+     */
+    public function jsonSerialize(): string
+    {
+        return json_encode($this->disks);
+    }
+
+    /**
+     * @return Tower
+     */
+    public function clone()
+    {
+        return new self($this->disks);
     }
 }

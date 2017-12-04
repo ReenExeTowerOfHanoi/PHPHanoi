@@ -16,7 +16,7 @@ class TowerTestCase extends TestCase
 
     public function testFilled()
     {
-        $tower = new Tower([2, 3, 4]);
+        $tower = new Tower([4, 3, 2]);
 
         $this->assertFalse($tower->isEmpty());
 
