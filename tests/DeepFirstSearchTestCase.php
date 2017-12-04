@@ -34,8 +34,7 @@ class DeepFirstSearchTestCase extends TestCase
 
         $deepFirstSearch = new DeepFirstSearch($beginState, $endState);
 
-        $this->assertTrue($deepFirstSearch->solve());
-        $this->assertSame(11353, $deepFirstSearch->getCount());
+        $this->assertSame(11353, $deepFirstSearch->solve());
 
         echo 'Move History:' . \PHP_EOL;
         foreach ($deepFirstSearch->getMoveLogList() as $moveLog) {

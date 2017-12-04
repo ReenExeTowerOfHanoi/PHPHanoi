@@ -38,6 +38,12 @@ class DeepFirstSearch
     private $count;
 
     /**
+     * Флаг результат найден
+     * @var
+     */
+    private $found = false;
+
+    /**
      * DeepFirstSearch constructor.
      * @param State $beginState
      * @param State $endState
@@ -48,16 +54,20 @@ class DeepFirstSearch
         $this->endState = $endState;
     }
 
-    public function solve()
+    public function solve(): int
     {
-        return $this->solveRecursive($this->beginState, 0, 1);
+        $this->solveRecursive($this->beginState, 0, 1);
+
+        return $this->count;
     }
 
-    public function solveRecursive(State $currentState, int $level, int $count)
+    public function solveRecursive(State $currentState, int $level, int $count): int
     {
         if ($currentState->getHash() === $this->endState->getHash()) {
             $this->count = $count;
-            return true;
+            $this->found = true;
+            // Возвращаем 0 чтобы соответствовать возвращаемому типу
+            return 0;
         }
 
         $possibleEndSteps = $this->getPossibleEndSteps($currentState);
@@ -78,8 +88,9 @@ class DeepFirstSearch
 
             $result = $this->solveRecursive($possibleEndState, $level + 1, $count + 1);
 
-            if ($result === true) {
-                return true;
+            if ($this->found) {
+                // Возвращаем 0 чтобы соответствовать возвращаемому типу
+                return 0;
             }
 
             $count = $result + 1;
@@ -139,5 +150,4 @@ class DeepFirstSearch
     {
         return $this->count;
     }
-
 }
