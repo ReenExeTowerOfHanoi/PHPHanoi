@@ -2,9 +2,10 @@
 
 namespace ReenExe\Hanoi;
 
-class Tower implements \JsonSerializable
+class Tower
 {
     /**
+     * числовой массив
      * @var array
      */
     private $disks;
@@ -23,6 +24,7 @@ class Tower implements \JsonSerializable
      */
     public function getSize(): int
     {
+        // count возвращает длину массив
         return count($this->disks);
     }
 
@@ -31,7 +33,8 @@ class Tower implements \JsonSerializable
      */
     public function isEmpty(): bool
     {
-        return empty($this->disks);
+        // count возвращает длину массив
+        return count($this->disks) === 0;
     }
 
     /**
@@ -39,6 +42,8 @@ class Tower implements \JsonSerializable
      */
     public function getTop(): int
     {
+        // end получаю значение последнего элемента массива
+        // элемент остается в массиве
         return end($this->disks);
     }
 
@@ -47,6 +52,7 @@ class Tower implements \JsonSerializable
      */
     public function addTop(int $disk)
     {
+        // Операция [] добавления в конец массива
         $this->disks[] = $disk;
     }
 
@@ -55,15 +61,25 @@ class Tower implements \JsonSerializable
      */
     public function fetchTop(): int
     {
+        // array_pop удаляю первый элемент массива и возвращаю как результат функции
         return array_pop($this->disks);
+        // $array = [1, 2, 3];
+        // $element = array_pop($array);
+        // $element стал 1
+        // $array стал [2, 3]
     }
 
     /**
      * @return string
      */
-    public function jsonSerialize(): string
+    public function getHash(): string
     {
-        return json_encode($this->disks);
+        $hash = '';
+        foreach ($this->disks as $disk) {
+            // Операция точка это добавление строк
+            $hash = $hash . $disk . ',';
+        }
+        return $hash;
     }
 
     /**
@@ -71,6 +87,6 @@ class Tower implements \JsonSerializable
      */
     public function clone()
     {
-        return new self($this->disks);
+        return new Tower($this->disks);
     }
 }

@@ -15,6 +15,14 @@ class DeepFirstSearch
     private $endState;
 
     /**
+     * Массив строк
+     * Это свойство для сохранения уже пройденных состояний
+     * Чтобы состояния можна было сравнить они конвертируются в строки
+     * Пример:
+     *          "{"B":"[7,6,5,4,3,2]","X":"[1]","Y":"[]","E":"[]"}"
+     * В других языкам можно использовать другие форматы для отображения состояния ввиде строки
+     * Например очень просто написать что-то такое:
+     *          "B:7,6,5,4,3,2,;"X":1,;Y:;E:;"
      * @var array
      */
     private $pastStateList = [];
@@ -56,11 +64,16 @@ class DeepFirstSearch
 
         foreach ($possibleEndSteps as $possibleEndStep) {
             $possibleEndState = $possibleEndStep->getState();
+            // in_array проверяю что значение входит в массив
+            // C# indexOf
             if (in_array($possibleEndState->getHash(), $this->pastStateList)) {
                 continue;
             }
 
+            // Операция [] добавления в конец массива
             $this->pastStateList[] = $possibleEndState->getHash();
+
+            // Операция [] добавления в конец массива
             $this->moveLogList[] = $possibleEndStep->getMoveLog();
 
             $result = $this->solveRecursive($possibleEndState, $level + 1, $count + 1);
@@ -94,6 +107,7 @@ class DeepFirstSearch
 
                         $movedDisk = $possibleEndState->move($fromTowerIndex, $toTowerIndex);
 
+                        // Операция [] добавления в конец массива
                         $result[] = new Step(
                             $possibleEndState,
                             new MoveLog(

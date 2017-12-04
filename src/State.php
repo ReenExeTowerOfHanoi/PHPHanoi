@@ -15,6 +15,7 @@ class State
     private $hash = null;
 
     /**
+     * Конструктор на входе получает или массив или карту
      * State constructor.
      * @param Tower[] $towers
      */
@@ -26,7 +27,7 @@ class State
     public function getHash(): string
     {
         return $this->hash === null
-            ? $this->hash = json_encode($this->towers)
+            ? $this->hash = $this->calculateHash()
             : $this->hash;
     }
 
@@ -81,6 +82,21 @@ class State
             $cloneTowers[$key] = $tower->clone();
         }
 
-        return new self($cloneTowers);
+        return new State($cloneTowers);
+    }
+
+    /**
+     * @return string
+     */
+    public function calculateHash(): string
+    {
+        $hash = '';
+
+        foreach ($this->towers as $index => $tower) {
+            // Операция точка это добавление строк
+            $hash = $hash . $index . ':' . $tower->getHash() . ';';
+        }
+
+        return $hash;
     }
 }

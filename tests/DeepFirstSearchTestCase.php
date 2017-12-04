@@ -11,8 +11,11 @@ class DeepFirstSearchTestCase extends TestCase
 {
     public function test()
     {
-        $disks = range(8 , 1);
+        $disks = range(7 , 1);
 
+        /**
+         * Буквенные обозначения только для красоты
+         */
         $beginState = new State([
             // B is BEGIN
             'B' => new Tower($disks),
@@ -32,6 +35,7 @@ class DeepFirstSearchTestCase extends TestCase
         $deepFirstSearch = new DeepFirstSearch($beginState, $endState);
 
         $this->assertTrue($deepFirstSearch->solve());
+        $this->assertSame(11353, $deepFirstSearch->getCount());
 
         echo 'Move History:' . \PHP_EOL;
         foreach ($deepFirstSearch->getMoveLogList() as $moveLog) {
