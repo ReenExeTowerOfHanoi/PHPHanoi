@@ -11,7 +11,7 @@ class DeepFirstSearchTestCase extends TestCase
 {
     public function test()
     {
-        $disks = range(7 , 1);
+        $disks = range(7, 1);
 
         /**
          * Буквенные обозначения только для красоты
@@ -36,12 +36,22 @@ class DeepFirstSearchTestCase extends TestCase
 
         $this->assertSame(11353, $deepFirstSearch->solve());
 
-        echo 'Move History:' . \PHP_EOL;
+        // PHP_EOL -> "\n" переход на новую строку
+        $output = '';
+        $output .= '4 Towers and 7 disks' . \PHP_EOL;
+        $output .= 'Move History:' . \PHP_EOL;
         foreach ($deepFirstSearch->getMoveLogList() as $moveLog) {
-            echo $moveLog->toString() . \PHP_EOL;
+            $output .= $moveLog->toString() . \PHP_EOL;
         }
 
-        echo 'Move count between towers: ' . count($deepFirstSearch->getMoveLogList()) . \PHP_EOL;
-        echo 'Some algorithm count: ' . $deepFirstSearch->getCount() . \PHP_EOL;
+        $output .= 'Move count between towers: '
+            . count($deepFirstSearch->getMoveLogList())
+            . ' (history length or steps) '
+            . \PHP_EOL;
+        $output .= 'Some algorithm count: ' . $deepFirstSearch->getCount() . \PHP_EOL;
+
+        $output .= 'Good luck :)';
+
+        file_put_contents('output', $output);
     }
 }
