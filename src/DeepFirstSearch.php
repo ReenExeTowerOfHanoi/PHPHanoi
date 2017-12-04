@@ -25,6 +25,11 @@ class DeepFirstSearch
     private $moveLogList = [];
 
     /**
+     * @var int
+     */
+    private $count;
+
+    /**
      * DeepFirstSearch constructor.
      * @param State $beginState
      * @param State $endState
@@ -43,6 +48,7 @@ class DeepFirstSearch
     public function solveRecursive(State $currentState, int $level, int $count)
     {
         if ($currentState->getHash() === $this->endState->getHash()) {
+            $this->count = $count;
             return true;
         }
 
@@ -111,4 +117,13 @@ class DeepFirstSearch
     {
         return $this->moveLogList;
     }
+
+    /**
+     * @return int
+     */
+    public function getCount(): int
+    {
+        return $this->count;
+    }
+
 }
