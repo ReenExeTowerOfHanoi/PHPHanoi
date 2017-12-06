@@ -25,7 +25,7 @@ class CommonStateSearcher
      *          "B:7,6,5,4,3,2,;"X":1,;Y:;E:;"
      * @var array
      */
-    protected $pastStateList = [];
+    protected $pastStateMap = [];
 
     /**
      * DeepFirstSearch constructor.
@@ -40,14 +40,13 @@ class CommonStateSearcher
 
     protected function isPastState(State $state)
     {
-        // in_array проверяю что значение входит в массив
-        // C# indexOf
-        return in_array($state->getHash(), $this->pastStateList);
+        // Проверяю по наличию ключа
+        return isset($this->pastStateMap[$state->getHash()]);
     }
 
     protected function addPastState(State $state)
     {
-        // Операция [] добавления в конец массива
-        $this->pastStateList[] = $state->getHash();
+        // Сохраняю чтобы использовать быстрый поиск по ключам
+        $this->pastStateMap[$state->getHash()] = true;
     }
 }
