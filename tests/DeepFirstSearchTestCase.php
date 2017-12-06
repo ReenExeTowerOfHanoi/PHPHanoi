@@ -36,10 +36,17 @@ class DeepFirstSearchTestCase extends TestCase
 
         $this->assertSame(11353, $deepFirstSearch->solve());
 
+        $this->renderResult($deepFirstSearch);
+    }
+
+    /**
+     * @param $deepFirstSearch
+     */
+    private function renderResult(DeepFirstSearch $deepFirstSearch)
+    {
         // PHP_EOL -> "\n" переход на новую строку
-        $output = '';
-        $output .= '4 Towers and 7 disks' . \PHP_EOL;
-        $output .= 'Move History:' . \PHP_EOL;
+        $output = '4 Towers and 7 disks' . \PHP_EOL
+            . 'Move History:' . \PHP_EOL;
         foreach ($deepFirstSearch->getMoveLogList() as $moveLog) {
             $output .= $moveLog->toString() . \PHP_EOL;
         }
@@ -47,10 +54,9 @@ class DeepFirstSearchTestCase extends TestCase
         $output .= 'Move count between towers: '
             . count($deepFirstSearch->getMoveLogList())
             . ' (history length or steps) '
-            . \PHP_EOL;
-        $output .= 'Some algorithm count: ' . $deepFirstSearch->getCount() . \PHP_EOL;
-
-        $output .= 'Good luck :)';
+            . \PHP_EOL
+            . 'Some algorithm count: ' . $deepFirstSearch->getCount() . \PHP_EOL
+            . 'Good luck :)';
 
         file_put_contents('output', $output);
     }
