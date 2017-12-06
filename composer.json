@@ -6,5 +6,10 @@
         "psr-4": {
             "ReenExe\\Hanoi\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
     }
 }

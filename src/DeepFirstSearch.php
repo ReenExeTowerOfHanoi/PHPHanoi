@@ -53,19 +53,4 @@ class DeepFirstSearch extends CommonStateSearcher
         return $count;
     }
 
-    /**
-     * @return MoveLog[]
-     */
-    public function getMoveLogList(): array
-    {
-        return $this->moveLogList;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCount(): int
-    {
-        return $this->count;
-    }
 }

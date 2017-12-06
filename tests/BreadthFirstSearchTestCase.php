@@ -2,12 +2,11 @@
 
 namespace Tests;
 
-use PHPUnit\Framework\TestCase;
 use ReenExe\Hanoi\BreadthFirstSearch;
 use ReenExe\Hanoi\State;
 use ReenExe\Hanoi\Tower;
 
-class BreadthFirstSearchTestCase extends TestCase
+class BreadthFirstSearchTestCase extends AbstractSearchTestCase
 {
     public function test()
     {
@@ -35,5 +34,7 @@ class BreadthFirstSearchTestCase extends TestCase
         $breadthFirstSearch = new BreadthFirstSearch($beginState, $endState);
 
         $this->assertTrue($breadthFirstSearch->solve());
+
+        $this->renderResult($breadthFirstSearch, 'breadthFirstSearchOutput.txt');
     }
 }

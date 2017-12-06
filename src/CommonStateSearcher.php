@@ -2,7 +2,7 @@
 
 namespace ReenExe\Hanoi;
 
-class CommonStateSearcher
+abstract class CommonStateSearcher
 {
     /**
      * @var State
@@ -46,6 +46,22 @@ class CommonStateSearcher
     {
         $this->beginState = $beginState;
         $this->endState = $endState;
+    }
+
+    /**
+     * @return MoveLog[]
+     */
+    public function getMoveLogList(): array
+    {
+        return $this->moveLogList;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount(): int
+    {
+        return $this->count;
     }
 
     protected function isEndState(State $state)

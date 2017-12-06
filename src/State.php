@@ -93,7 +93,7 @@ class State
         $hash = '';
 
         foreach ($this->towers as $index => $tower) {
-            // Операция точка это добавление строк
+            // Операция "." точка это добавление строк
             $hash = $hash . $index . ':' . $tower->getHash() . ';';
         }
 
