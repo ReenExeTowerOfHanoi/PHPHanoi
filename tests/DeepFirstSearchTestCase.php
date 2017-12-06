@@ -34,7 +34,8 @@ class DeepFirstSearchTestCase extends TestCase
 
         $deepFirstSearch = new DeepFirstSearch($beginState, $endState);
 
-        $this->assertSame(11353, $deepFirstSearch->solve());
+        $this->assertTrue($deepFirstSearch->solve());
+        $this->assertSame(11353, $deepFirstSearch->getCount());
 
         $this->renderResult($deepFirstSearch);
     }

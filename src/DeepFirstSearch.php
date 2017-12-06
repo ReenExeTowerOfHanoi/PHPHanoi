@@ -5,31 +5,21 @@ namespace ReenExe\Hanoi;
 class DeepFirstSearch extends CommonStateSearcher
 {
     /**
-     * @var MoveLog[]
-     */
-    private $moveLogList = [];
-
-    /**
-     * @var int
-     */
-    private $count;
-
-    /**
      * Флаг результат найден
      * @var
      */
     private $found = false;
 
-    public function solve(): int
+    public function solve(): bool
     {
         $this->solveRecursive($this->beginState, 0, 1);
 
-        return $this->count;
+        return $this->found;
     }
 
     public function solveRecursive(State $currentState, int $level, int $count): int
     {
-        if ($currentState->getHash() === $this->endState->getHash()) {
+        if ($this->isEndState($currentState)) {
             $this->count = $count;
             $this->found = true;
             // Возвращаем 0 чтобы соответствовать возвращаемому типу
@@ -61,42 +51,6 @@ class DeepFirstSearch extends CommonStateSearcher
         }
 
         return $count;
-    }
-
-    /**
-     * @param State $currentState
-     * @return Step[]
-     */
-    private function getPossibleEndSteps(State $currentState)
-    {
-        $fromNames = $currentState->getTowerNames();
-        $toNames = $currentState->getTowerNames();
-
-        $result = [];
-
-        foreach ($fromNames as $fromTowerIndex) {
-            foreach ($toNames as $toTowerIndex) {
-                if ($fromTowerIndex !== $toTowerIndex) {
-                    if ($currentState->canMoveBetween($fromTowerIndex, $toTowerIndex)) {
-                        $possibleEndState = $currentState->clone();
-
-                        $movedDisk = $possibleEndState->move($fromTowerIndex, $toTowerIndex);
-
-                        // Операция [] добавления в конец массива
-                        $result[] = new Step(
-                            $possibleEndState,
-                            new MoveLog(
-                                $fromTowerIndex,
-                                $toTowerIndex,
-                                $movedDisk
-                            )
-                        );
-                    }
-                }
-            }
-        }
-
-        return $result;
     }
 
     /**

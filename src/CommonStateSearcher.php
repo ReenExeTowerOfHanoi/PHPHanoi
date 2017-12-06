@@ -28,6 +28,16 @@ class CommonStateSearcher
     protected $pastStateMap = [];
 
     /**
+     * @var MoveLog[]
+     */
+    protected $moveLogList = [];
+
+    /**
+     * @var int
+     */
+    protected $count = 0;
+
+    /**
      * DeepFirstSearch constructor.
      * @param State $beginState
      * @param State $endState
@@ -36,6 +46,11 @@ class CommonStateSearcher
     {
         $this->beginState = $beginState;
         $this->endState = $endState;
+    }
+
+    protected function isEndState(State $state)
+    {
+        return $state->getHash() === $this->endState->getHash();
     }
 
     protected function isPastState(State $state)
@@ -48,5 +63,41 @@ class CommonStateSearcher
     {
         // Сохраняю чтобы использовать быстрый поиск по ключам
         $this->pastStateMap[$state->getHash()] = true;
+    }
+
+    /**
+     * @param State $currentState
+     * @return Step[]
+     */
+    protected function getPossibleEndSteps(State $currentState)
+    {
+        $fromNames = $currentState->getTowerNames();
+        $toNames = $currentState->getTowerNames();
+
+        $result = [];
+
+        foreach ($fromNames as $fromTowerIndex) {
+            foreach ($toNames as $toTowerIndex) {
+                if ($fromTowerIndex !== $toTowerIndex) {
+                    if ($currentState->canMoveBetween($fromTowerIndex, $toTowerIndex)) {
+                        $possibleEndState = $currentState->clone();
+
+                        $movedDisk = $possibleEndState->move($fromTowerIndex, $toTowerIndex);
+
+                        // Операция [] добавления в конец массива
+                        $result[] = new Step(
+                            $possibleEndState,
+                            new MoveLog(
+                                $fromTowerIndex,
+                                $toTowerIndex,
+                                $movedDisk
+                            )
+                        );
+                    }
+                }
+            }
+        }
+
+        return $result;
     }
 }
