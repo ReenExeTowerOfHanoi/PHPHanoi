@@ -40,14 +40,12 @@ class DeepFirstSearch extends CommonStateSearcher
 
         foreach ($possibleEndSteps as $possibleEndStep) {
             $possibleEndState = $possibleEndStep->getState();
-            // in_array проверяю что значение входит в массив
-            // C# indexOf
-            if (in_array($possibleEndState->getHash(), $this->pastStateList)) {
+
+            if ($this->isPastState($possibleEndState)) {
                 continue;
             }
 
-            // Операция [] добавления в конец массива
-            $this->pastStateList[] = $possibleEndState->getHash();
+            $this->addPastState($possibleEndState);
 
             // Операция [] добавления в конец массива
             $this->moveLogList[] = $possibleEndStep->getMoveLog();

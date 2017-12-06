@@ -37,4 +37,17 @@ class CommonStateSearcher
         $this->beginState = $beginState;
         $this->endState = $endState;
     }
+
+    protected function isPastState(State $state)
+    {
+        // in_array проверяю что значение входит в массив
+        // C# indexOf
+        return in_array($state->getHash(), $this->pastStateList);
+    }
+
+    protected function addPastState(State $state)
+    {
+        // Операция [] добавления в конец массива
+        $this->pastStateList[] = $state->getHash();
+    }
 }
