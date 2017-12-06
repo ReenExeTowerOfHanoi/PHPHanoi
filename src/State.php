@@ -34,7 +34,7 @@ class State
     /**
      * @return array
      */
-    public function getTowerNames()
+    public function getTowerNames(): array
     {
         return array_keys($this->towers);
     }
@@ -62,7 +62,7 @@ class State
      * @param $toTowerIndex
      * @return int
      */
-    public function move($fromTowerIndex, $toTowerIndex)
+    public function move($fromTowerIndex, $toTowerIndex): int
     {
         $fromTower = $this->towers[$fromTowerIndex];
         $toTower = $this->towers[$toTowerIndex];
@@ -74,7 +74,7 @@ class State
     /**
      * @return State
      */
-    public function clone()
+    public function clone(): State
     {
         $cloneTowers = [];
 
@@ -88,7 +88,7 @@ class State
     /**
      * @return string
      */
-    public function calculateHash(): string
+    protected function calculateHash(): string
     {
         $hash = '';
 

@@ -56,7 +56,7 @@ class MoveLog
         return $this->disk;
     }
 
-    public function toString()
+    public function toString(): string
     {
         return json_encode([
             'from' => $this->from,

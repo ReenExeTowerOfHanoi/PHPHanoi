@@ -64,12 +64,12 @@ abstract class CommonStateSearcher
         return $this->count;
     }
 
-    protected function isEndState(State $state)
+    protected function isEndState(State $state): bool
     {
         return $state->getHash() === $this->endState->getHash();
     }
 
-    protected function isPastState(State $state)
+    protected function isPastState(State $state): bool
     {
         // Проверяю по наличию ключа
         return isset($this->pastStateMap[$state->getHash()]);
@@ -85,7 +85,7 @@ abstract class CommonStateSearcher
      * @param State $currentState
      * @return Step[]
      */
-    protected function getPossibleEndSteps(State $currentState)
+    protected function getPossibleEndSteps(State $currentState): array
     {
         $fromNames = $currentState->getTowerNames();
         $toNames = $currentState->getTowerNames();

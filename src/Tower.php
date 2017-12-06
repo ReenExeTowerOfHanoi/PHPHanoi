@@ -85,7 +85,7 @@ class Tower
     /**
      * @return Tower
      */
-    public function clone()
+    public function clone(): Tower
     {
         return new Tower($this->disks);
     }
