@@ -12168,5 +12168,5 @@ Move History:
 {"from":"X","to":"Y","disk":1}
 {"from":"X","to":"E","disk":1}
 Move count between towers: 12167 (history length or steps) 
-Some algorithm count: 0
+Some algorithm count: 4197
 Good luck :)

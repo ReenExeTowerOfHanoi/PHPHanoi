@@ -11,6 +11,7 @@ class BreadthFirstSearch extends CommonStateSearcher
 
         while ($queue) {
             $currentState = array_pop($queue);
+            ++$this->count;
 
             if ($this->isEndState($currentState)) {
                 return true;
