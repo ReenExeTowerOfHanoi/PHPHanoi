@@ -2,7 +2,10 @@
 
 namespace ReenExe\Hanoi;
 
-class BreadthFirstSearch
+class BreadthFirstSearch extends CommonStateSearcher
 {
+    public function solve()
+    {
 
+    }
 }
