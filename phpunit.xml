@@ -3,7 +3,7 @@
         <testsuite name="blank">
             <file>tests/TowerTestCase.php</file>
             <file>tests/DeepFirstSearchTestCase.php</file>
-            <!--<file>tests/BreadthFirstSearchTestCase.php</file>-->
+            <file>tests/BreadthFirstSearchTestCase.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

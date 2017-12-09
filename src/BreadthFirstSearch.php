@@ -4,8 +4,45 @@ namespace ReenExe\Hanoi;
 
 class BreadthFirstSearch extends CommonStateSearcher
 {
+    /**
+     * @var Step[]
+     */
+    private $stateHashStepMap = [];
+
+    /**
+     * @var array
+     */
+    private $stateHashToParentHash = [];
+
     public function solve(): bool
     {
+        $found = $this->search();
+
+        if ($found) {
+            $reverseMoveLogList = [];
+
+            $hash = $this->endState->getHash();
+
+            while (isset($this->stateHashToParentHash[$hash])) {
+                $reverseMoveLogList[] = $this->stateHashStepMap[$hash]->getMoveLog();
+
+                $hash = $this->stateHashToParentHash[$hash];
+            }
+
+            $this->moveLogList = array_reverse($reverseMoveLogList);
+        }
+
+        return $found;
+    }
+
+    public function getMoveLogList(): array
+    {
+        return $this->moveLogList;
+    }
+
+    private function search(): bool
+    {
+        /* @var $queue State[] */
         $queue = [$this->beginState];
         $this->addPastState($this->beginState);
 
@@ -22,7 +59,8 @@ class BreadthFirstSearch extends CommonStateSearcher
             foreach ($possibleEndSteps as $possibleEndStep) {
                 $possibleEndState = $possibleEndStep->getState();
 
-                $this->moveLogList[] = $possibleEndStep->getMoveLog();
+                $this->stateHashStepMap[$possibleEndState->getHash()] = $possibleEndStep;
+                $this->stateHashToParentHash[$possibleEndState->getHash()] = $currentState->getHash();
 
                 // Операция [] добавления в конец массива
                 $queue[] = $possibleEndState;
@@ -30,10 +68,5 @@ class BreadthFirstSearch extends CommonStateSearcher
         }
 
         return false;
-    }
-
-    public function getMoveLogList(): array
-    {
-        return $this->moveLogList;
     }
 }

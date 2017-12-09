@@ -51,7 +51,10 @@ abstract class CommonStateSearcher
     /**
      * @return MoveLog[]
      */
-    abstract public function getMoveLogList(): array;
+    public function getMoveLogList(): array
+    {
+        return $this->moveLogList;
+    }
 
     /**
      * @return int
