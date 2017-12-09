@@ -5,12 +5,12 @@ namespace ReenExe\Hanoi;
 class MoveLog
 {
     /**
-     * @var int
+     * @var int|string
      */
     private $from;
 
     /**
-     * @var int
+     * @var int|string
      */
     private $to;
 
@@ -21,8 +21,8 @@ class MoveLog
 
     /**
      * MoveLog constructor.
-     * @param int $from
-     * @param int $to
+     * @param int|string $from
+     * @param int|string $to
      * @param int $disk
      */
     public function __construct($from, $to, $disk)
@@ -30,30 +30,6 @@ class MoveLog
         $this->from = $from;
         $this->to = $to;
         $this->disk = $disk;
-    }
-
-    /**
-     * @return int
-     */
-    public function getFrom(): int
-    {
-        return $this->from;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTo(): int
-    {
-        return $this->to;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDisk(): int
-    {
-        return $this->disk;
     }
 
     public function toString(): string

@@ -88,7 +88,7 @@ class State
     /**
      * @return string
      */
-    protected function calculateHash(): string
+    private function calculateHash(): string
     {
         $hash = '';
 
