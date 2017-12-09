@@ -68,6 +68,7 @@ class State
         $toTower = $this->towers[$toTowerIndex];
         $disk = $fromTower->fetchTop();
         $toTower->addTop($disk);
+        $this->dropHash();
         return $disk;
     }
 
@@ -98,5 +99,10 @@ class State
         }
 
         return $hash;
+    }
+
+    private function dropHash()
+    {
+        $this->hash = null;
     }
 }

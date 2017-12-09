@@ -40,4 +40,28 @@ class MoveLog
             'disk' => $this->disk,
         ]);
     }
+
+    /**
+     * @return int|string
+     */
+    public function getFrom()
+    {
+        return $this->from;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getTo()
+    {
+        return $this->to;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDisk(): int
+    {
+        return $this->disk;
+    }
 }

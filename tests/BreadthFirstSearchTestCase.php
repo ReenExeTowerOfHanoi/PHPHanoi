@@ -35,6 +35,7 @@ class BreadthFirstSearchTestCase extends AbstractSearchTestCase
 
         $this->assertTrue($breadthFirstSearch->solve());
         $this->assertSame(4197, $breadthFirstSearch->getCount());
+        $this->assertMoveLogList($breadthFirstSearch, $beginState, $endState);
 
         $this->renderResult($breadthFirstSearch, 'breadthFirstSearchOutput.txt');
     }
