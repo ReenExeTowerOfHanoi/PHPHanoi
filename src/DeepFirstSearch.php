@@ -31,12 +31,6 @@ class DeepFirstSearch extends CommonStateSearcher
         foreach ($possibleEndSteps as $possibleEndStep) {
             $possibleEndState = $possibleEndStep->getState();
 
-            if ($this->isPastState($possibleEndState)) {
-                continue;
-            }
-
-            $this->addPastState($possibleEndState);
-
             // Операция [] добавления в конец массива
             $this->moveLogList[] = $possibleEndStep->getMoveLog();
 

@@ -100,6 +100,12 @@ abstract class CommonStateSearcher
 
                         $movedDisk = $possibleEndState->move($fromTowerIndex, $toTowerIndex);
 
+                        if ($this->isPastState($possibleEndState)) {
+                            continue;
+                        }
+
+                        $this->addPastState($possibleEndState);
+
                         // Операция [] добавления в конец массива
                         $result[] = new Step(
                             $possibleEndState,

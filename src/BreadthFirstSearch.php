@@ -22,12 +22,6 @@ class BreadthFirstSearch extends CommonStateSearcher
             foreach ($possibleEndSteps as $possibleEndStep) {
                 $possibleEndState = $possibleEndStep->getState();
 
-                if ($this->isPastState($possibleEndState)) {
-                    continue;
-                }
-
-                $this->addPastState($possibleEndState);
-
                 $this->moveLogList[] = $possibleEndStep->getMoveLog();
 
                 // Операция [] добавления в конец массива
