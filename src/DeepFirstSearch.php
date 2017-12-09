@@ -31,12 +31,11 @@ class DeepFirstSearch extends CommonStateSearcher
         foreach ($possibleEndSteps as $possibleEndStep) {
             $possibleEndState = $possibleEndStep->getState();
 
-            // Операция [] добавления в конец массива
-            $this->moveLogList[] = $possibleEndStep->getMoveLog();
-
             $result = $this->solveRecursive($possibleEndState, $level + 1, $count + 1);
 
             if ($this->found) {
+                // Операция [] добавления в конец массива
+                $this->moveLogList[] = $possibleEndStep->getMoveLog();
                 // Возвращаем 0 чтобы соответствовать возвращаемому типу
                 return 0;
             }
@@ -47,4 +46,11 @@ class DeepFirstSearch extends CommonStateSearcher
         return $count;
     }
 
+    /**
+     * @return MoveLog[]
+     */
+    public function getMoveLogList(): array
+    {
+        return array_reverse($this->moveLogList);
+    }
 }

@@ -31,4 +31,9 @@ class BreadthFirstSearch extends CommonStateSearcher
 
         return false;
     }
+
+    public function getMoveLogList(): array
+    {
+        return $this->moveLogList;
+    }
 }
