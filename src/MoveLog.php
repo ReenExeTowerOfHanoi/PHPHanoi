@@ -7,17 +7,17 @@ class MoveLog
     /**
      * @var int|string
      */
-    private $from;
+    protected $from;
 
     /**
      * @var int|string
      */
-    private $to;
+    protected $to;
 
     /**
      * @var int
      */
-    private $disk;
+    protected $disk;
 
     /**
      * MoveLog constructor.
@@ -25,7 +25,7 @@ class MoveLog
      * @param int|string $to
      * @param int $disk
      */
-    public function __construct($from, $to, $disk)
+    public function __construct($from, $to, int $disk)
     {
         $this->from = $from;
         $this->to = $to;

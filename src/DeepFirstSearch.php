@@ -42,7 +42,13 @@ class DeepFirstSearch extends CommonStateSearcher
 
             if ($this->found) {
                 // Операция [] добавления в конец массива
-                $this->reverseMoveLogList[] = $possibleEndStep->getMoveLog();
+                $moveLog = $possibleEndStep->getMoveLog();
+                $this->reverseMoveLogList[] = new LevelMoveLog(
+                    $moveLog->getFrom(),
+                    $moveLog->getTo(),
+                    $moveLog->getDisk(),
+                    $level
+                );
                 // Возвращаем 0 чтобы соответствовать возвращаемому типу
                 return 0;
             }
