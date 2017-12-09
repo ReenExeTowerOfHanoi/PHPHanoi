@@ -122,9 +122,4 @@ abstract class CommonStateSearcher
 
         return $result;
     }
-
-    protected function isMoveAvailble(State $state, MoveLog $moveLog)
-    {
-        return $state->canMoveBetween($moveLog->getFrom(), $moveLog->getTo());
-    }
 }
