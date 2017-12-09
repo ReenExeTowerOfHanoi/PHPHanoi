@@ -36,6 +36,6 @@ class DeepFirstSearchTestCase extends AbstractSearchTestCase
         $this->assertTrue($deepFirstSearch->solve());
         $this->assertSame(10884, $deepFirstSearch->getCount());
 
-        $this->renderResult($deepFirstSearch, 'deepFirstSearchOutpur.txt');
+        $this->renderResult($deepFirstSearch, 'deepFirstSearchOutput.txt');
     }
 }
