@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use ReenExe\Hanoi\CommonStateSearcher;
 use ReenExe\Hanoi\MoveLog;
 use ReenExe\Hanoi\State;
+use ReenExe\Hanoi\Tower;
 
 abstract class AbstractSearchTestCase extends TestCase
 {
@@ -43,6 +44,32 @@ abstract class AbstractSearchTestCase extends TestCase
         }
 
         $this->assertSame($beginState->getHash(), $endState->getHash());
+    }
+
+    protected function getStateRange()
+    {
+        $disks = range($this->size, 1);
+
+        /**
+         * Буквенные обозначения только для красоты
+         */
+        $beginState = new State([
+            // B is BEGIN
+            'B' => new Tower($disks),
+            'X' => new Tower([]),
+            'Y' => new Tower([]),
+            // E is End
+            'E' => new Tower([]),
+        ]);
+
+        $endState = new State([
+            'B' => new Tower([]),
+            'X' => new Tower([]),
+            'Y' => new Tower([]),
+            'E' => new Tower($disks),
+        ]);
+
+        return [$beginState, $endState];
     }
 
     private function assertMove(State $state, MoveLog $log)
