@@ -9,6 +9,8 @@ use ReenExe\Hanoi\State;
 
 abstract class AbstractSearchTestCase extends TestCase
 {
+    protected $size = 7;
+
     /**
      * @param CommonStateSearcher $stateSearcher
      * @param $fileName
@@ -17,7 +19,7 @@ abstract class AbstractSearchTestCase extends TestCase
     {
         // Операция "." точка это добавление строк
         // PHP_EOL -> "\n" переход на новую строку
-        $output = '4 Towers and 7 disks' . \PHP_EOL
+        $output = "4 Towers and {$this->size} disks" . \PHP_EOL
             . 'Move History:' . \PHP_EOL;
         foreach ($stateSearcher->getMoveLogList() as $moveLog) {
             $output .= $moveLog->toString() . \PHP_EOL;

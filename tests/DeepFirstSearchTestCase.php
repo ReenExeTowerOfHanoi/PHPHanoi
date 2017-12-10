@@ -10,7 +10,7 @@ class DeepFirstSearchTestCase extends AbstractSearchTestCase
 {
     public function test()
     {
-        $disks = range(7, 1);
+        $disks = range($this->size, 1);
 
         /**
          * Буквенные обозначения только для красоты
