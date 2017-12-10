@@ -48,6 +48,8 @@ abstract class CommonStateSearcher
         $this->endState = $endState;
     }
 
+    abstract public function solve(): bool;
+
     /**
      * @return MoveLog[]
      */

@@ -9,6 +9,11 @@ class BreadthFirstSearch extends CommonStateSearcher
      */
     private $stateHashStepMap = [];
 
+    /**
+     * @var State[]
+     */
+    private $queue = [];
+
     public function solve(): bool
     {
         $found = $this->search();
@@ -34,12 +39,13 @@ class BreadthFirstSearch extends CommonStateSearcher
 
     private function search(): bool
     {
-        /* @var $queue State[] */
-        $queue = [$this->beginState];
-        $this->addPastState($this->beginState);
+        if (empty($this->queue)) {
+            $this->queue[] = $this->beginState;
+            $this->addPastState($this->beginState);
+        }
 
-        while ($queue) {
-            $currentState = array_pop($queue);
+        while ($this->queue) {
+            $currentState = array_pop($this->queue);
             ++$this->count;
 
             if ($this->isEndState($currentState)) {
@@ -54,7 +60,7 @@ class BreadthFirstSearch extends CommonStateSearcher
                 $this->stateHashStepMap[$possibleEndState->getHash()] = $possibleEndStep;
 
                 // Операция [] добавления в конец массива
-                $queue[] = $possibleEndState;
+                $this->queue[] = $possibleEndState;
             }
         }
 

@@ -4,6 +4,7 @@
             <file>tests/TowerTestCase.php</file>
             <file>tests/DeepFirstSearchTestCase.php</file>
             <file>tests/BreadthFirstSearchTestCase.php</file>
+            <file>tests/HeuristicFirstSearchTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
