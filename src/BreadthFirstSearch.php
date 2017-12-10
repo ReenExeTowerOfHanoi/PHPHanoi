@@ -9,11 +9,6 @@ class BreadthFirstSearch extends CommonStateSearcher
      */
     private $stateHashStepMap = [];
 
-    /**
-     * @var array
-     */
-    private $stateHashToParentHash = [];
-
     public function solve(): bool
     {
         $found = $this->search();
@@ -23,10 +18,12 @@ class BreadthFirstSearch extends CommonStateSearcher
 
             $hash = $this->endState->getHash();
 
-            while (isset($this->stateHashToParentHash[$hash])) {
-                $reverseMoveLogList[] = $this->stateHashStepMap[$hash]->getMoveLog();
+            while (isset($this->stateHashStepMap[$hash])) {
+                $step = $this->stateHashStepMap[$hash];
 
-                $hash = $this->stateHashToParentHash[$hash];
+                $reverseMoveLogList[] = $step->getMoveLog();
+
+                $hash = $step->getFromState()->getHash();
             }
 
             $this->moveLogList = array_reverse($reverseMoveLogList);
@@ -52,10 +49,9 @@ class BreadthFirstSearch extends CommonStateSearcher
             $possibleEndSteps = $this->getPossibleEndSteps($currentState);
 
             foreach ($possibleEndSteps as $possibleEndStep) {
-                $possibleEndState = $possibleEndStep->getState();
+                $possibleEndState = $possibleEndStep->getNextState();
 
                 $this->stateHashStepMap[$possibleEndState->getHash()] = $possibleEndStep;
-                $this->stateHashToParentHash[$possibleEndState->getHash()] = $currentState->getHash();
 
                 // Операция [] добавления в конец массива
                 $queue[] = $possibleEndState;

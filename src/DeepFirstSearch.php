@@ -36,7 +36,7 @@ class DeepFirstSearch extends CommonStateSearcher
         $possibleEndSteps = $this->getPossibleEndSteps($currentState);
 
         foreach ($possibleEndSteps as $possibleEndStep) {
-            $possibleEndState = $possibleEndStep->getState();
+            $possibleEndState = $possibleEndStep->getNextState();
 
             $result = $this->solveRecursive($possibleEndState, $level + 1, $count + 1);
 

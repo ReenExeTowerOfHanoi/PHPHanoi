@@ -7,7 +7,11 @@ class Step
     /**
      * @var State
      */
-    private $state;
+    private $fromState;
+    /**
+     * @var State
+     */
+    private $nextState;
 
     /**
      * @var MoveLog
@@ -16,21 +20,31 @@ class Step
 
     /**
      * Step constructor.
-     * @param State $state
+     * @param State $fromState
+     * @param State $nextState
      * @param MoveLog $moveLog
      */
-    public function __construct(State $state, MoveLog $moveLog)
+    public function __construct(State $fromState, State $nextState, MoveLog $moveLog)
     {
-        $this->state = $state;
+        $this->fromState = $fromState;
+        $this->nextState = $nextState;
         $this->moveLog = $moveLog;
     }
 
     /**
      * @return State
      */
-    public function getState(): State
+    public function getFromState(): State
     {
-        return $this->state;
+        return $this->fromState;
+    }
+
+    /**
+     * @return State
+     */
+    public function getNextState(): State
+    {
+        return $this->nextState;
     }
 
     /**

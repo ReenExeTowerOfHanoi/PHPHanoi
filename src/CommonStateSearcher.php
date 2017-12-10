@@ -108,6 +108,7 @@ abstract class CommonStateSearcher
 
                         // Операция [] добавления в конец массива
                         $result[] = new Step(
+                            $currentState,
                             $possibleEndState,
                             new MoveLog(
                                 $fromTowerIndex,
